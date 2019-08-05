@@ -15,17 +15,49 @@
     <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="js/bootstrap.js"></script>
     <link rel="icon" href="img/icon/snapshot.jpg">
+
     <style>
-        table {
+        #VIC {
+            height: 200px;
+            width: 100%;
             position: relative;
-            border-collapse: collapse;
+            background-image: url('img/green.jpg');
+            object-fit: fill;
+            background-repeat: no-repeat;
+        }
+
+        #SA {
+            height: 200px;
+            width: 100%;
+            background-image: url('img/red.jpg');
+            position: relative;
+            object-fit: fill;
+            background-repeat: no-repeat;
+        }
+
+        #QL {
+            height: 200px;
+            width: 100%;
+            background-image: url('img/yellow.jpg');
+            position: relative;
+            object-fit: fill;
+            background-repeat: no-repeat;
+        }
+
+        #NT {
+            height: 200px;
+            width: 100%;
+            background-image: url('img/blue.jpg');
+            position: relative;
+            object-fit: fill;
+            background-repeat: no-repeat;
         }
     </style>
 </head>
 
 <body style="text-align: center">
 
-    <div style="height: 20px;background-color:white;width: 100%">
+    <div style="height: 30px;background-color:white;width: 100%">
     </div>
     <nav>
         <ul class="navBar">
@@ -33,49 +65,79 @@
             <li><a href="2.0-album.html">Album</a></li>
             <li><a href="3.0-About.html">About</a></li>
             <li><a href="4.0-Story.html">Story</a></li>
-            <li><a href="mailto:waityouforever77@gmail.com" target="_blank">Contact Me</a></li>
+            <li><a href="mailto:waityouforever77@gmail.com" target="_blank">Contact</a></li>
         </ul>
     </nav>
+    <a href="2.1.0-VIC.html">
+        <div id="VIC" onmouseover="changeVicPic()" onmouseout="clearpic()">
+            <h1>VIC</h1>
+        </div>
+    </a>
 
-    <div>
-        <table>
-            <tr>
-                <td>
-                    <a href="2.1.0-VIC.html"> <img src="img/VIC/DSC_0063.jpg" alt="VIC"
-                            style="width: 800px; height:450px"></a>
-                </td>
-                <td>
-                    <a href="2.1.0-VIC.html"> <img src="img/VIC/DSC_0063.jpg" alt="VIC"
-                            style="width: 800px; height:450px"></a>
-                </td>
-                <td>
-                    <a href="2.1.0-VIC.html"> <img src="img/VIC/DSC_0063.jpg" alt="VIC"
-                            style="width: 800px; height:450px"></a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="2.1.0-VIC.html"> <img src="img/VIC/DSC_0063.jpg" alt="VIC"
-                            style="width: 800px; height:450px"></a>
-                </td>
-                <td>
-                    <a href="2.1.0-VIC.html"> <img src="img/VIC/DSC_0063.jpg" alt="VIC"
-                            style="width: 800px; height:450px"></a>
-                </td>
-                <td>
-                    <a href="2.1.0-VIC.html"> <img src="img/VIC/DSC_0063.jpg" alt="VIC"
-                            style="width: 800px; height:450px"></a>
-                </td>
-            </tr>
-        </table>
+    <a href="2.2.0-SA.html">
+        <div id="SA" onmouseover="changeSaPic()" onmouseout="clearpic()">
+            <h1>SA</h1>
+        </div>
+    </a>
+
+    <a href="2.3.0-QL.html">
+        <div id="QL" onmouseover="changeQlPic()" onmouseout="clearpic()">
+            <h1>QL</h1>
+        </div>
+    </a>
+
+    <a href="2.4.0-NT.html">
+        <div id="NT" onmouseover="changeNtPic()" onmouseout="clearpic()">
+            <h1>NT</h1>
+        </div>
+    </a>
 
 
+    <div style="height: 30px;background-color:black;width: 100%">
     </div>
 
     <script>
+        function changeVicPic() {
+            document.getElementById("VIC").style.backgroundImage = "url('img/VIC/DSC_0085.jpg')";
+        }
 
+        function changeSaPic() {
+            document.getElementById("SA").style.backgroundImage = "url('img/SA/DSC_0137.jpg')";
+        }
+
+        function changeQlPic() {
+            document.getElementById("QL").style.backgroundImage = "url('img/Ql/b.png')";
+        }
+
+        function changeNtPic() {
+            document.getElementById("NT").style.backgroundImage = "url('img/NT/DSC_0421.jpg')";
+        }
+
+        function clearpic() {
+            document.getElementById("VIC").style.backgroundImage = "";
+            document.getElementById("SA").style.backgroundImage = "";
+            document.getElementById("QL").style.backgroundImage = "";
+            document.getElementById("NT").style.backgroundImage = "";
+        }
+        // var states ;
+        // switch (states) {
+        //     case VIC:
+        //         document.getElementById("VIC").style.backgroundImage = "url('img/VIC/DSC_0085.jpg')";
+        //         break;
+        //     case "SA":
+        //         document.getElementById("SA").style.backgroundImage = "url('img/VIC/DSC_0085.jpg')";
+        //         break;
+        //     case "QL":
+        //         document.getElementById("QL").style.backgroundImage = "url('img/VIC/DSC_0085.jpg')";
+        //         break;
+        //     case "NT":
+        //         document.getElementById("NT").style.backgroundImage = "url('img/VIC/DSC_0085.jpg')";
+        //         break;
+        //     default:
+        //         ;
+        //         break;
+        // }
     </script>
-
 </body>
 
 </html>
