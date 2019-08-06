@@ -7,18 +7,62 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Album</title>
     <link rel="stylesheet" href="css/Navbar.css">
-    <link rel="stylesheet" href="css/bootstrap-grid.css">
-    <link rel="stylesheet" href="css/bootstrap-reboot.css">
-    <link rel="stylesheet" href="css/bootstrap-reboot.min.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <script type="text/javascript" src="js/jquery-3.4.1.js"></script>
-    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/jquery-3.4.1.js"></script>
     <link rel="icon" href="img/icon/snapshot.jpg">
 
     <style>
-        #VIC {
+        * {
+            box-sizing: border-box;
+        }
+
+        .img-comp-container {
+            position: relative;
             height: 200px;
+            /*should be the same height as the images*/
+        }
+
+        .img-comp-img {
+            position: absolute;
+            width: auto;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .img-comp-img img {
+            display: block;
+            vertical-align: middle;
+        }
+
+        .img-comp-slider {
+            position: absolute;
+            z-index: 9;
+            cursor: ew-resize;
+            /*set the appearance of the slider:*/
+            width: 40px;
+            height: 40px;
+            background-color: #2196F3;
+            opacity: 0.7;
+            border-radius: 50%;
+        }
+
+        div div {
+            border-radius: 20px;
+        }
+
+        div {
+            margin: 4px;
+        }
+
+        p {
+            margin: 8px;
+            vertical-align: middle;
+            padding: 4px;
+        }
+
+        /* #VIC {
+            height: 100px;
             width: 100%;
             position: relative;
             background-image: url('img/green.jpg');
@@ -27,7 +71,7 @@
         }
 
         #SA {
-            height: 200px;
+            height: 100px;
             width: 100%;
             background-image: url('img/red.jpg');
             position: relative;
@@ -36,7 +80,7 @@
         }
 
         #QL {
-            height: 200px;
+            height: 100px;
             width: 100%;
             background-image: url('img/yellow.jpg');
             position: relative;
@@ -45,20 +89,102 @@
         }
 
         #NT {
-            height: 200px;
+            height: 100px;
             width: 100%;
             background-image: url('img/blue.jpg');
             position: relative;
             object-fit: fill;
             background-repeat: no-repeat;
-        }
+        } */
     </style>
+    <script>
+        function initComparisons() {
+            var x, i;
+            /*find all elements with an "overlay" class:*/
+            x = document.getElementsByClassName("img-comp-overlay");
+            for (i = 0; i < x.length; i++) {
+                /*once for each "overlay" element:
+                pass the "overlay" element as a parameter when executing the compareImages function:*/
+                compareImages(x[i]);
+            }
+
+            function compareImages(img) {
+                var slider, img, clicked = 0,
+                    w, h;
+                /*get the width and height of the img element*/
+                w = img.offsetWidth;
+                h = img.offsetHeight;
+                /*set the width of the img element to 50%:*/
+                img.style.width = (w / 2) + "px";
+                /*create slider:*/
+                slider = document.createElement("DIV");
+                slider.setAttribute("class", "img-comp-slider");
+                /*insert slider*/
+                img.parentElement.insertBefore(slider, img);
+                /*position the slider in the middle:*/
+                slider.style.top = (h / 2) - (slider.offsetHeight / 2) + "px";
+                slider.style.left = (w / 2) - (slider.offsetWidth / 2) + "px";
+                /*execute a function when the mouse button is pressed:*/
+                slider.addEventListener("mousedown", slideReady);
+                /*and another function when the mouse button is released:*/
+                window.addEventListener("mouseup", slideFinish);
+                /*or touched (for touch screens:*/
+                slider.addEventListener("touchstart", slideReady);
+                /*and released (for touch screens:*/
+                window.addEventListener("touchstop", slideFinish);
+
+                function slideReady(e) {
+                    /*prevent any other actions that may occur when moving over the image:*/
+                    e.preventDefault();
+                    /*the slider is now clicked and ready to move:*/
+                    clicked = 1;
+                    /*execute a function when the slider is moved:*/
+                    window.addEventListener("mousemove", slideMove);
+                    window.addEventListener("touchmove", slideMove);
+                }
+
+                function slideFinish() {
+                    /*the slider is no longer clicked:*/
+                    clicked = 0;
+                }
+
+                function slideMove(e) {
+                    var pos;
+                    /*if the slider is no longer clicked, exit this function:*/
+                    if (clicked == 0) return false;
+                    /*get the cursor's x position:*/
+                    pos = getCursorPos(e)
+                    /*prevent the slider from being positioned outside the image:*/
+                    if (pos < 0) pos = 0;
+                    if (pos > w) pos = w;
+                    /*execute a function that will resize the overlay image according to the cursor:*/
+                    slide(pos);
+                }
+
+                function getCursorPos(e) {
+                    var a, x = 0;
+                    e = e || window.event;
+                    /*get the x positions of the image:*/
+                    a = img.getBoundingClientRect();
+                    /*calculate the cursor's x coordinate, relative to the image:*/
+                    x = e.pageX - a.left;
+                    /*consider any page scrolling:*/
+                    x = x - window.pageXOffset;
+                    return x;
+                }
+
+                function slide(x) {
+                    /*resize the image:*/
+                    img.style.width = x + "px";
+                    /*position the slider:*/
+                    slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
+                }
+            }
+        }
+    </script>
 </head>
 
 <body style="text-align: center">
-
-    <div style="height: 30px;background-color:white;width: 100%">
-    </div>
     <nav>
         <ul class="navBar">
             <li><a href="1.0-homepage.html">Homepage</a></li>
@@ -68,7 +194,32 @@
             <li><a href="mailto:waityouforever77@gmail.com" target="_blank">Contact</a></li>
         </ul>
     </nav>
-    <a href="2.1.0-VIC.html">
+    <p span style="text-align: left">
+        <button type="button" class="btn btn-outline-primary"><a href="2.1.0-VIC.html">Victoria</a></button>
+        <button type="button" class="btn btn-outline-success"><a href="2.2.0-SA.html">South Australia</a></button>
+    </p>
+    <div class="img-comp-container" style="object-position: center">
+        <div class="img-comp-img">
+            <img src="img/SA/DSC_0137.jpg" width="1260px" height="200">
+        </div>
+        <div class="img-comp-img img-comp-overlay">
+            <img src="img/VIC/DSC_0085.jpg" width="1260px" height="200">
+        </div>
+    </div>
+    <p span style="text-align: left">
+        <button type="button" class="btn btn-outline-danger"><a href="2.4.0-NT.html">Northern Territory</a></button>
+        <button type="button" class="btn btn-outline-warning"><a href="2.3.0-QL.html">Queensland</a></button>
+    </p>
+
+    <div class="img-comp-container" style="text-align: center">
+        <div class="img-comp-img">
+            <img src="img/Ql/b.png" width="1260px" height="200">
+        </div>
+        <div class="img-comp-img img-comp-overlay">
+            <img src="img/NT/DSC_0421.jpg" width="1260px" height="200">
+        </div>
+    </div>
+    <!-- <a href="2.1.0-VIC.html">
         <div id="VIC" onmouseover="changeVicPic()" onmouseout="clearpic()">
             <h1>VIC</h1>
         </div>
@@ -90,35 +241,33 @@
         <div id="NT" onmouseover="changeNtPic()" onmouseout="clearpic()">
             <h1>NT</h1>
         </div>
-    </a>
-
-
-    <div style="height: 30px;background-color:black;width: 100%">
-    </div>
+    </a> -->
 
     <script>
-        function changeVicPic() {
-            document.getElementById("VIC").style.backgroundImage = "url('img/VIC/DSC_0085.jpg')";
-        }
+        /*Execute a function that will execute an image compare function for each element with the img-comp-overlay class:*/
+        initComparisons();
+        // function changeVicPic() {
+        //     document.getElementById("VIC").style.backgroundImage = "url('img/VIC/DSC_0085.jpg')";
+        // }
 
-        function changeSaPic() {
-            document.getElementById("SA").style.backgroundImage = "url('img/SA/DSC_0137.jpg')";
-        }
+        // function changeSaPic() {
+        //     document.getElementById("SA").style.backgroundImage = "url('img/SA/DSC_0137.jpg')";
+        // }
 
-        function changeQlPic() {
-            document.getElementById("QL").style.backgroundImage = "url('img/Ql/b.png')";
-        }
+        // function changeQlPic() {
+        //     document.getElementById("QL").style.backgroundImage = "url('img/Ql/b.png')";
+        // }
 
-        function changeNtPic() {
-            document.getElementById("NT").style.backgroundImage = "url('img/NT/DSC_0421.jpg')";
-        }
+        // function changeNtPic() {
+        //     document.getElementById("NT").style.backgroundImage = "url('img/NT/DSC_0421.jpg')";
+        // }
 
-        function clearpic() {
-            document.getElementById("VIC").style.backgroundImage = "";
-            document.getElementById("SA").style.backgroundImage = "";
-            document.getElementById("QL").style.backgroundImage = "";
-            document.getElementById("NT").style.backgroundImage = "";
-        }
+        // function clearpic() {
+        //     document.getElementById("VIC").style.backgroundImage = "";
+        //     document.getElementById("SA").style.backgroundImage = "";
+        //     document.getElementById("QL").style.backgroundImage = "";
+        //     document.getElementById("NT").style.backgroundImage = "";
+        // }
         // var states ;
         // switch (states) {
         //     case VIC:
