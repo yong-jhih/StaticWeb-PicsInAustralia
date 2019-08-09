@@ -46,8 +46,7 @@
             margin: 10px;
             overflow: scroll;
         }
-    </style>
-    <style>
+
         * {
             box-sizing: border-box;
         }
@@ -67,39 +66,32 @@
             margin: 10px -16px;
         }
 
-        /* Add padding BETWEEN each column */
         .row,
         .row>.column {
             padding: 8px;
         }
 
-        /* Create three equal columns that floats next to each other */
         .column {
             float: left;
             width: 33.33%;
             display: none;
-            /* Hide all elements by default */
         }
 
-        /* Clear floats after rows */
         .row:after {
             content: "";
             display: table;
             clear: both;
         }
 
-        /* Content */
         .content {
             background-color: white;
             padding: 10px;
         }
 
-        /* The "show" class is added to the filtered elements */
         .show {
             display: block;
         }
 
-        /* Style the buttons */
         .btn {
             border: none;
             outline: none;
@@ -136,7 +128,7 @@
     </div>
     <div class="rightside">
 
-        <!-- MAIN (Center website) -->
+       
         <div class="main">
 
             <h1>其他檔案</h1>
@@ -146,93 +138,84 @@
 
             <div id="myBtnContainer">
                 <button class="btn active" onclick="filterSelection('all')"> Show all</button>
-                <button class="btn" onclick="filterSelection('nature')">work</button>
-                <button class="btn" onclick="filterSelection('cars')">house</button>
-                <button class="btn" onclick="filterSelection('people')">life</button>
+                <button class="btn" onclick="filterSelection('work')">work</button>
+                <button class="btn" onclick="filterSelection('house')">house</button>
+                <button class="btn" onclick="filterSelection('life')">life</button>
             </div>
 
-            <!-- Portfolio Gallery Grid -->
+          
             <div class="row">
-                <div class="column nature">
+                <div class="column work">
                     <div class="content">
-                        <img src="img/story/DSC_0541.jpg" alt="Mountains" style="width:100%">
+                        <img src="img/story/DSC_0541.jpg" alt="work" style="width:100%">
                         <h4>採櫻桃</h4>
                         <p></p>
                     </div>
                 </div>
-                <div class="column nature">
+                <div class="column work">
                     <div class="content">
-                        <img src="img/story/work/DSC_0005.jpg" alt="Lights" style="width:100%">
+                        <img src="img/story/work/DSC_0005.jpg" alt="work" style="width:100%">
                         <h4>牛肉工廠</h4>
                         <p></p>
                     </div>
                 </div>
-                <div class="column nature">
+                <div class="column work">
                     <div class="content">
-                        <img src="img/story/work/DSC_0019.jpg" alt="Nature" style="width:100%">
+                        <img src="img/story/work/DSC_0019.jpg" alt="work" style="width:100%">
                         <h4>急速冷凍庫</h4>
                         <p></p>
                     </div>
                 </div>
 
-                <div class="column cars">
+                <div class="column house">
                     <div class="content">
-                        <img src="img/story/share house/DSC_0046.jpg" alt="Car" style="width:100%">
+                        <img src="img/story/share house/DSC_0046.jpg" alt="house" style="width:100%">
                         <h4>share house</h4>
                         <p></p>
                     </div>
                 </div>
-                <div class="column cars">
+                <div class="column house">
                     <div class="content">
-                        <img src="img/story/share house/DSC_0042.jpg" alt="Car" style="width:100%">
+                        <img src="img/story/share house/DSC_0042.jpg" alt="house" style="width:100%">
                         <h4>乾濕分離衛浴</h4>
                         <p></p>
                     </div>
                 </div>
-                <div class="column cars">
+                <div class="column house">
                     <div class="content">
-                        <img src="img/story/Adelaide住宿/DSC_0911.jpg" alt="Car" style="width:100%">
+                        <img src="img/story/Adelaide住宿/DSC_0911.jpg" alt="house" style="width:100%">
                         <h4>主臥</h4>
                         <p></p>
                     </div>
                 </div>
 
-                <div class="column people">
+                <div class="column life">
                     <div class="content">
-                        <img src="img/story/DSC_0049.JPG" alt="Car" style="width:100%">
+                        <img src="img/story/DSC_0049.JPG" alt="life" style="width:100%">
                         <h4>咖啡廳</h4>
                         <p></p>
                     </div>
                 </div>
-                <div class="column people">
+                <div class="column life">
                     <div class="content">
-                        <img src="img/story/DSC_0014(7).jpg" alt="Car" style="width:100%">
+                        <img src="img/story/DSC_0014(7).jpg" alt="life" style="width:100%">
                         <h4>酒吧</h4>
                         <p></p>
                     </div>
                 </div>
-                <div class="column people">
+                <div class="column life">
                     <div class="content">
-                        <img src="img/story/IMG_20180302_183834_677.jpg" alt="Car" style="width:100%">
+                        <img src="img/story/IMG_20180302_183834_677.jpg" alt="life" style="width:100%">
                         <h4>漢堡薯條</h4>
                         <p></p>
                     </div>
                 </div>
-                <!-- END GRID -->
+               
             </div>
 
-            <!-- END MAIN -->
+          
         </div>
 
-
-
-        <!-- <h1>簡介</h1>
-        <hr>
-        <p>平常沒甚麼特別的興趣,但自己會去做的娛樂,大概是
-            釣蝦,慢跑,線上遊戲,聽音樂.
-            不討厭往戶外跑,只是不會想自己去,
-            人對了,去哪都好玩,是吧?喜歡慢慢的做事情
-            有條有理.</p> -->
     </div>
 
     <script>
@@ -271,7 +254,7 @@
             element.className = arr1.join(" ");
         }
 
-        // Add active class to the current button (highlight it)
+      
         var btnContainer = document.getElementById("myBtnContainer");
         var btns = btnContainer.getElementsByClassName("btn");
         for (var i = 0; i < btns.length; i++) {
